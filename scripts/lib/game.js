@@ -8,19 +8,11 @@ define(function () {
         this.ctx    = canvas.getContext("2d");
     };
 
-    Game.prototype.drawBackground = function (ctx) {
-        this.ctx.save();
-        this.ctx.fillStyle = "#111";
-        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.restore();
-    };
-
     Game.prototype.setSpaceship = function (spaceship) {
         this.spaceship = spaceship;
     };
 
     Game.prototype.render = function () {
-        this.drawBackground();
         this.spaceship.render();
     };
 

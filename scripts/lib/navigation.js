@@ -9,23 +9,26 @@ define(function () {
         var self = this;
 
         canvas.setAttribute("tabindex", 0);
+        canvas.focus();
         canvas.addEventListener('keydown', function (event) {
-            switch(event.keyCode) {
-                case 37:
-                    self.emit(self.ARROW_LEFT);
-                    break;
-                case 39:
-                    self.emit(self.ARROW_RIGHT);
-                    break;
-                case 38:
-                    self.emit(self.ARROW_UP);
-                    break;
-                case 40:
-                    self.emit(self.ARROW_DOWN);
-                    break;
-            }
+            if (event.keyCode >= 37 && event.keyCode <= 40) {
+                switch(event.keyCode) {
+                    case 37:
+                        self.emit(self.ARROW_LEFT);
+                        break;
+                    case 39:
+                        self.emit(self.ARROW_RIGHT);
+                        break;
+                    case 38:
+                        self.emit(self.ARROW_UP);
+                        break;
+                    case 40:
+                        self.emit(self.ARROW_DOWN);
+                        break;
+                }
 
-            event.preventDefault();
+                event.preventDefault();
+            }
         }, false);
     };
 
