@@ -12,12 +12,17 @@ define(function () {
         this.spaceship = spaceship;
     };
 
+    Game.prototype.setAsteroidGenerator = function (asteroidGenerator) {
+        this.asteroidGenerator = asteroidGenerator;
+    };
+
     Game.prototype.render = function () {
         this.spaceship.render();
     };
 
     Game.prototype.start = function () {
         this.render();
+        this.asteroidGenerator.generate();
     };
 
     return Game;

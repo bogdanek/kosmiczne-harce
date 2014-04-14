@@ -4,7 +4,12 @@ requirejs.config({
     baseUrl: "scripts/lib"
 });
 
-require(["navigation", "spaceship", "game"], function (Navigation, Spaceship, Game) {
+require([
+    "navigation",
+    "spaceship",
+    "asteroidGenerator",
+    "game"
+], function (Navigation, Spaceship, AsteroidGenerator, Game) {
     var canvas = document.querySelector(".canvas");
 
     var navigation = new Navigation(canvas);
@@ -12,7 +17,10 @@ require(["navigation", "spaceship", "game"], function (Navigation, Spaceship, Ga
     var spaceship = new Spaceship(canvas);
         spaceship.setNavigation(navigation);
 
+    var asteroidGenerator = new AsteroidGenerator(canvas);
+
     var game = new Game(canvas);
         game.setSpaceship(spaceship);
+        game.setAsteroidGenerator(asteroidGenerator);
         game.start();
 });
