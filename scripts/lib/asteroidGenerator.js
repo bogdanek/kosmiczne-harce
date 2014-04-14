@@ -9,6 +9,18 @@ define(["asteroid"], function (Asteroid) {
     };
 
     AsteroidGenerator.prototype.ASTEROID_LIMIT = 10;
+    AsteroidGenerator.prototype.quarters = [
+        {x: 0,   y: 0},
+        {x: 200, y: 0},
+        {x: 400, y: 0},
+        {x: 600, y: 0},
+        {x: 0,   y: 200},
+        {x: 600, y: 200},
+        {x: 0,   y: 400},
+        {x: 200, y: 400},
+        {x: 400, y: 400},
+        {x: 600, y: 400}
+    ];
 
     AsteroidGenerator.prototype.generate = function () {
         setInterval(function () {
@@ -23,9 +35,12 @@ define(["asteroid"], function (Asteroid) {
     };
 
     AsteroidGenerator.prototype.getRandomPosition = function () {
+        var quarterId = Math.floor((Math.random() * this.ASTEROID_LIMIT) + 1),
+            quarter   = this.quarters[quarterId];
+
         return {
-            x: Math.floor((Math.random() * this.canvas.width)  + 1),
-            y: Math.floor((Math.random() * this.canvas.height) + 1)
+            x: Math.floor((Math.random() * 200) + quarter.x),
+            y: Math.floor((Math.random() * 200) + quarter.y)
         };
     };
 
