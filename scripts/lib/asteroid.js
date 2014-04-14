@@ -10,11 +10,6 @@ define(["flyingObject"], function (FlyingObject) {
             x: 20,
             y: 20
         };
-
-        this.position = {
-            x: Math.floor((Math.random() * this.canvas.width)  + 1),
-            y: Math.floor((Math.random() * this.canvas.height) + 1)
-        };
     };
 
     Asteroid.prototype = Object.create(FlyingObject.prototype);

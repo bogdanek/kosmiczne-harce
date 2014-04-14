@@ -7,3 +7,9 @@ body {
     display: block;
     margin: 3% auto;
 }
+
+.canvas--grid {
+    background-image: linear-gradient(to right, transparent, transparent 199px, #222 199px, #222 201px),
+                      linear-gradient(to bottom, transparent, transparent 199px, #222 199px, #222 201px);
+    background-size: 201px 201px;
+}

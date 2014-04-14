@@ -25,6 +25,22 @@ define(function () {
         };
     };
 
+    FlyingObject.prototype.setSize = function(size) {
+        this.size = size;
+    };
+
+    FlyingObject.prototype.setAngle = function (angle) {
+        this.angle = angle;
+    };
+
+    FlyingObject.prototype.setPosition = function (position) {
+        this.position = position;
+    };
+
+    FlyingObject.prototype.setSpeed = function (speed) {
+        this.speed = speed;
+    };
+
     FlyingObject.prototype.clearContext = function () {
         this.ctx.save();
         this.ctx.translate(this.position.x, this.position.y);
