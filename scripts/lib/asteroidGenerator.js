@@ -3,9 +3,9 @@
 define(["asteroid"], function (Asteroid) {
     "use strict";
 
-    var AsteroidGenerator = function (canvas) {
+    var AsteroidGenerator = function (canvas, game) {
         this.canvas = canvas;
-        this.asteroids = [];
+        this.game = game;
 
         this.quarterSize = {
             x: 100,
@@ -44,12 +44,11 @@ define(["asteroid"], function (Asteroid) {
 
     AsteroidGenerator.prototype.generate = function () {
         setInterval(function () {
-            if (this.asteroids.length < this.ASTEROID_LIMIT) {
+            if (this.game.getObjectsCount() < this.ASTEROID_LIMIT) {
                 var asteroid = new Asteroid(this.canvas);
                     asteroid.setPosition(this.getRandomPosition());
-                    asteroid.render();
 
-                this.asteroids.push(asteroid);
+                this.game.push(asteroid);
             }
         }.bind(this), this.TIME_INTERVAL);
     };

@@ -11,7 +11,7 @@ define(["flyingObject"], function (FlyingObject) {
             'y' : 20
         };
 
-        this.angle = 90;
+        this.angle = -90 * Math.PI / 180;
 
         this.position = {
             'x': this.canvas.width  / 2,
@@ -25,36 +25,33 @@ define(["flyingObject"], function (FlyingObject) {
     Spaceship.prototype.setNavigation = function (navigation) {
         navigation.on(navigation.ARROW_LEFT,  this.rotateLeft.bind(this))
                   .on(navigation.ARROW_RIGHT, this.rotateRight.bind(this))
-                  .on(navigation.ARROW_UP,    this.moveUp.bind(this))
-                  .on(navigation.ARROW_DOWN,  this.moveDown.bind(this));
+                  .on(navigation.ARROW_UP,    this.accelerate.bind(this))
+                  .on(navigation.ARROW_DOWN,  this.decelerate.bind(this));
     };
 
-    Spaceship.prototype.moveUp = function () {
-        this.clearContext();
-        this.position.y--;
-        this.render();
+    Spaceship.prototype.accelerate = function () {
+        var M = Math;
+        this.speed.x += M.max(-2, M.min(2, this.ACCELERATION * M.cos(this.angle)));
+        this.speed.y += M.max(-2, M.min(2, this.ACCELERATION * M.sin(this.angle)));
     };
 
-    Spaceship.prototype.moveDown = function () {
-        this.clearContext();
-        this.position.y++;
-        this.render();
+    Spaceship.prototype.decelerate = function () {
+        var M = Math;
+        this.speed.x -= M.max(-2, M.min(2, this.ACCELERATION * M.cos(this.angle)));
+        this.speed.y -= M.max(-2, M.min(2, this.ACCELERATION * M.sin(this.angle)));
     };
 
     Spaceship.prototype.rotateLeft = function () {
-        this.clearContext();
-        this.angle = (this.angle - 1) % 360;
-        this.render();
+        this.angle -= this.AGILITY;
     };
 
     Spaceship.prototype.rotateRight = function () {
-        this.clearContext();
-        this.angle = (this.angle + 1) % 360;
-        this.render();
+        this.angle += this.AGILITY;
     };
 
-    Spaceship.prototype.drawObject = function () {
+    Spaceship.prototype.draw = function () {
         this.ctx.fillStyle = "#FFF";
+        FlyingObject.prototype.draw.call(this);
     };
 
     return Spaceship;

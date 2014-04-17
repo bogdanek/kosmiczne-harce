@@ -17,10 +17,8 @@ require([
     var spaceship = new Spaceship(canvas);
         spaceship.setNavigation(navigation);
 
-    var asteroidGenerator = new AsteroidGenerator(canvas);
-
     var game = new Game(canvas);
-        game.setSpaceship(spaceship);
-        game.setAsteroidGenerator(asteroidGenerator);
+        game.push(spaceship);
+        (new AsteroidGenerator(canvas, game)).generate();
         game.start();
 });
